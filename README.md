@@ -2,7 +2,7 @@
 
 `BASE URL`: "https://token-balance.onrender.com/api/v1"
 
-## SEPOLIA TESTNET ENDPOINT
+## Sepolia Testnet Endpoint
 
 **Fetch a User's Sepolia ETH balance:**
 `Sepolia ETH`: "/sepolia-eth/:userAddress"
