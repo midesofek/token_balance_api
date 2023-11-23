@@ -1,6 +1,6 @@
-# API TO FETCH WALLET ADDRESS BALANCE
+# API to Fetch WALLET ADDRESS BALANCE
 
-`BASE URL`: "https://"
+`BASE URL`: "https://token-balance.onrender.com"
 
 ## SEPOLIA TESTNET ENDPOINT
 
