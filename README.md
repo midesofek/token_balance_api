@@ -1,4 +1,4 @@
-# API to Fetch WALLET ADDRESS BALANCE
+# API to Fetch Wallet Address Balance
 
 `BASE URL`: "https://token-balance.onrender.com"
 
