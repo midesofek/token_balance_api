@@ -7,8 +7,7 @@ const ARBISCAN_KEY = process.env.ARBISCAN_API_KEY;
 
 // Function to fetch ETH balance on ARB
 async function ethBalanceController(req, res) {
-  const userAddress = req.params.userAddress;
-
+  const { userAddress } = req.body;
   try {
     const response = await axios.get(
       `https://api.arbiscan.io/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${ARBISCAN_KEY}`

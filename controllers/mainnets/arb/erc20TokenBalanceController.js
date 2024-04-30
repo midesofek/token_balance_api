@@ -7,8 +7,7 @@ const ARBISCAN_KEY = process.env.ARBISCAN_API_KEY;
 
 // Function to fetch any ERC20 token on ARB balance using its ContractAddress
 async function erc20TokenBalanceController(req, res) {
-  const contractAddress = req.params.contractAddress;
-  const userAddress = req.params.userAddress;
+  const { userAddress, contractAddress } = req.body;
 
   try {
     const response = await axios.get(
