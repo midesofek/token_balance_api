@@ -7,12 +7,11 @@ const BASESCAN_KEY = process.env.BASESCAN_API_KEY;
 
 // Function to fetch any ERC20 token on BASE balance using its ContractAddress
 async function erc20TokenBalanceController(req, res) {
-  const contractAddress = req.params.contractAddress;
-  const userAddress = req.params.userAddress;
+  const { userAddress, contractAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.basescan.io/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BASESCAN_KEY}`
+      `https://api.basescan.org/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BASESCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether

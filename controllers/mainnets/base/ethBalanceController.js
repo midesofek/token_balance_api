@@ -7,11 +7,11 @@ const BASESCAN_KEY = process.env.BASESCAN_API_KEY;
 
 // Function to fetch ETH balance on ARB
 async function ethBalanceController(req, res) {
-  const userAddress = req.body.userAddress;
+  const { userAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.basescan.io/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${BASESCAN_KEY}`
+      `https://api.basescan.org/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${BASESCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether
