@@ -30,7 +30,7 @@ function greeter(req, res) {
 
 //// Handle Mainnet Route ////
 // ETH MAINNET ROUTE
-router.route("/eth/:userAddress").get(ethBalanceController);
+router.route("/eth").get(ethBalanceController);
 router
   .route("/erc20/:contractAddress/:userAddress")
   .get(erc20BalanceController);
