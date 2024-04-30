@@ -5,7 +5,7 @@ const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY;
 
 // Function to fetch ETH balance
 async function ethBalanceController(req, res) {
-  const userAddress = req.params.userAddress;
+  const { userAddress } = req.body;
 
   try {
     const response = await axios.get(
