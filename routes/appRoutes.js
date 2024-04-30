@@ -31,28 +31,32 @@ function greeter(req, res) {
 //// Handle Mainnet Route ////
 // ETH MAINNET ROUTE
 router.route("/eth/:userAddress").get(ethBalanceController);
-router.route("erc20/:contractAddress/:userAddress").get(erc20BalanceController);
+router
+  .route("/erc20/:contractAddress/:userAddress")
+  .get(erc20BalanceController);
 
 // POLYGON MAINNET ROUTE
 router.route("/matic/:userAddress").get(maticBalanceController);
 router
-  .route("matic-erc20/:contractAddress/:userAddress")
+  .route("/matic-erc20/:contractAddress/:userAddress")
   .get(maticErc20BalanceController);
 
 // BSC MAINNET ROUTE
 router.route("/bnb/:userAddress").get(bnbBalanceController);
-router.route("bep20/:contractAddress/:userAddress").get(bep20BalanceController);
+router
+  .route("/bep20/:contractAddress/:userAddress")
+  .get(bep20BalanceController);
 
 // ARB MAINNET ROUTE
 router.route("/arb-eth/:userAddress").get(arbEthBalanceController);
 router
-  .route("arb-erc20/:contractAddress/:userAddress")
+  .route("/arb-erc20/:contractAddress/:userAddress")
   .get(arbErc20BalanceController);
 
 // BASE MAINNET ROUTE
 router.route("/base-eth/:userAddress").get(baseEthBalanceController);
 router
-  .route("base-erc20/:contractAddress/:userAddress")
+  .route("/base-erc20/:contractAddress/:userAddress")
   .get(baseErc20BalanceController);
 
 //// Handle Testnet Route ////
