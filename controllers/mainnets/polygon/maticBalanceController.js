@@ -5,11 +5,11 @@ const POLYGONSCAN_KEY = process.env.POLYGONSCAN_API_KEY;
 
 // Function to fetch MATIC balance
 async function maticBalanceController(req, res) {
-  const userAddress = req.params.userAddress;
+  const { userAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.polygonscan.io/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${POLYGONSCAN_KEY}`
+      `https://api.polygonscan.com/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${POLYGONSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether

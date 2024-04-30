@@ -5,18 +5,17 @@ require("dotenv").config();
 
 const POLYGONSCAN_KEY = process.env.POLYGONSCAN_API_KEY;
 
-// Function to fetch any ERC20 token balance using its ContractAddress
+// Function to fetch any ERC20 token balance on Polygon using its ContractAddress
 async function erc20TokenBalanceController(req, res) {
-  const contractAddress = req.params.contractAddress;
-  const userAddress = req.params.userAddress;
+  const { userAddress, contractAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${POLYGONSCAN_KEY}`
+      `https://api.polygonscan.com/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${POLYGONSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether
-    console.log(`Token Balance: ${balanceInEth} ETH`);
+    console.log(`Token Balance: ${balanceInEth}`);
     res.status(200).json(balanceInEth);
     return balanceInEth;
   } catch (error) {
