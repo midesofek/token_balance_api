@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
-const ethBalanceController = require("../controllers/ethBalanceController");
-const erc20TokenBalanceController = require("../controllers/erc20TokenBalanceController");
+const ethBalanceController = require("../controllers/testnets/ethBalanceController");
+const erc20TokenBalanceController = require("../controllers/testnets/erc20TokenBalanceController");
 
 function greeter(req, res) {
   res.status(200).json("Hello There!");
