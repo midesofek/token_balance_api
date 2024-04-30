@@ -7,7 +7,7 @@ const BASESCAN_KEY = process.env.BASESCAN_API_KEY;
 
 // Function to fetch ETH balance on ARB
 async function ethBalanceController(req, res) {
-  const userAddress = req.params.userAddress;
+  const userAddress = req.body.userAddress;
 
   try {
     const response = await axios.get(
