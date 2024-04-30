@@ -5,12 +5,11 @@ const BSCSCAN_KEY = process.env.BSCSCAN_API_KEY;
 
 // Function to fetch any BEP20 token balance using its ContractAddress
 async function bep20TokenBalanceController(req, res) {
-  const contractAddress = req.params.contractAddress;
-  const userAddress = req.params.userAddress;
+  const { userAddress, contractAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.bscscan.io/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
+      `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether

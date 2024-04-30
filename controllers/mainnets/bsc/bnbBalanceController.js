@@ -5,11 +5,11 @@ const BSCSCAN_KEY = process.env.BSCSCAN_API_KEY;
 
 // Function to fetch BNB balance on BSC
 async function bnbBalanceController(req, res) {
-  const userAddress = req.params.userAddress;
+  const { userAddress } = req.body;
 
   try {
     const response = await axios.get(
-      `https://api.bscscan.io/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
+      `https://api.bscscan.com/api?module=account&action=balance&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether
