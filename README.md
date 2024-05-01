@@ -1,10 +1,8 @@
 # API to Fetch Wallet Address Balance
 
+`Documentation`: "https://documenter.getpostman.com/view/28784072/2sA3JDhkj7"
+
 `BASE URL`: "https://token-balance.onrender.com/api/v1"
-
-# MAINNET
-
-# TESTNET
 
 ## Sepolia Testnet Endpoint
 
