@@ -34,20 +34,20 @@ router.route("/eth").post(ethBalanceController);
 router.route("/erc20").post(erc20BalanceController);
 
 // POLYGON MAINNET ROUTE
-router.route("/matic").get(maticBalanceController);
-router.route("/matic-erc20").get(maticErc20BalanceController);
+router.route("/matic").post(maticBalanceController);
+router.route("/matic-erc20").post(maticErc20BalanceController);
 
 // BSC MAINNET ROUTE
-router.route("/bnb").get(bnbBalanceController);
-router.route("/bep20").get(bep20BalanceController);
+router.route("/bnb").post(bnbBalanceController);
+router.route("/bep20").post(bep20BalanceController);
 
 // ARB MAINNET ROUTE
-router.route("/arb-eth").get(arbEthBalanceController);
-router.route("/arb-erc20").get(arbErc20BalanceController);
+router.route("/arb-eth").post(arbEthBalanceController);
+router.route("/arb-erc20").post(arbErc20BalanceController);
 
 // BASE MAINNET ROUTE
-router.route("/base-eth").get(baseEthBalanceController);
-router.route("/base-erc20").get(baseErc20BalanceController);
+router.route("/base-eth").post(baseEthBalanceController);
+router.route("/base-erc20").post(baseErc20BalanceController);
 
 //// Handle Testnet Route ////
 router.route("/").get(greeter);
