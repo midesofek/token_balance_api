@@ -14,7 +14,7 @@ async function ethBalanceController(req, res) {
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether
     console.log(`ETH Balance: ${balanceInEth} ETH`);
-    res.status(200).json(`ETH Balance: ${balanceInEth} ETH`);
+    res.status(200).json(balanceInEth);
     return balanceInEth;
   } catch (error) {
     console.error("Error fetching ETH balance:", error.message);
