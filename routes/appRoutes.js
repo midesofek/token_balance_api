@@ -30,8 +30,8 @@ function greeter(req, res) {
 
 //// Handle Mainnet Route ////
 // ETH MAINNET ROUTE
-router.route("/eth").get(ethBalanceController);
-router.route("/erc20").get(erc20BalanceController);
+router.route("/eth").post(ethBalanceController);
+router.route("/erc20").post(erc20BalanceController);
 
 // POLYGON MAINNET ROUTE
 router.route("/matic").get(maticBalanceController);
