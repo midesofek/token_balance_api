@@ -1,30 +1,24 @@
-const ethers = require("ethers");
 const axios = require("axios");
+const fetchDecimals = require("../../../utils/utils");
 require("dotenv").config();
 
 const { ETHERSCAN_API_KEY: ETHERSCAN_KEY, ETH_RPC_URL } = process.env;
-
-async function fetchDecimals(tokenAddress) {
-  const provider = new ethers.providers.JsonRpcProvider(ETH_RPC_URL);
-  const res = await axios.get(`
-    https://api.etherscan.io/api?module=contract&action=getabi&address=${tokenAddress}&apikey=${ETHERSCAN_KEY}`);
-  const abi = res.data.result;
-  console.log(abi);
-  const tokenContract = new ethers.Contract(tokenAddress, abi, provider);
-  const decimals = await tokenContract.decimals();
-  console.log(decimals);
-  return decimals;
-}
+const BASE_URL = "https://api.etherscan.io";
 
 // Function to fetch any ERC20 token balance using its ContractAddress
 async function erc20TokenBalanceController(req, res) {
   const { userAddress, contractAddress } = req.body;
 
   try {
-    const decimals = await fetchDecimals(contractAddress);
+    const decimals = await fetchDecimals(
+      contractAddress,
+      ETH_RPC_URL,
+      BASE_URL,
+      ETHERSCAN_KEY
+    );
 
     const response = await axios.get(
-      `https://api.etherscan.io/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${ETHERSCAN_KEY}`
+      `${BASE_URL}/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${ETHERSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
     const balanceInEth = balanceInWei / 10 ** decimals; // Convert Wei to Ether

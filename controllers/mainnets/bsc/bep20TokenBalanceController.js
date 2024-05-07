@@ -1,18 +1,26 @@
 const axios = require("axios");
 require("dotenv").config();
 
-const BSCSCAN_KEY = process.env.BSCSCAN_API_KEY;
+const { BSCSCAN_API_KEY: BSCSCAN_KEY, BNB_RPC_URL } = process.env;
+const BASE_URL = "https://api.bscscan.com";
 
 // Function to fetch any BEP20 token balance using its ContractAddress
 async function bep20TokenBalanceController(req, res) {
   const { userAddress, contractAddress } = req.body;
 
   try {
+    const decimals = await fetchDecimals(
+      contractAddress,
+      BNB_RPC_URL,
+      BASE_URL,
+      BSCSCAN_KEY
+    );
+
     const response = await axios.get(
-      `https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
+      `${BASE_URL}/api?module=account&action=tokenbalance&contractaddress=${contractAddress}&address=${userAddress}&tag=latest&apikey=${BSCSCAN_KEY}`
     );
     const balanceInWei = response.data.result;
-    const balanceInEth = balanceInWei / 1e18; // Convert Wei to Ether
+    const balanceInEth = balanceInWei / 10 ** decimals; // Convert Wei to Ether
     console.log(`Token Balance: ${balanceInEth} ETH`);
     res.status(200).json(balanceInEth);
     return balanceInEth;
